@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @author: Nick Humrich
  * @date: 2/7/14
  */
-public class StatsLogger {
+public class LazyLogger {
   /*
   Feel free to remove all Logger stuff. Otherwise, you will have to import the logger
   */
@@ -19,9 +19,9 @@ public class StatsLogger {
   private BlockingQueue<String> itemsToLog;
   private String fileName;
 
-  public StatsLogger() {
+  public LazyLogger() {
     itemsToLog = new LinkedBlockingQueue<String>();
-    Thread t = new StatsLoggerThread();
+    Thread t = new LazyLoggerThread();
     t.start(); //spawns a new thread for lazy logging
   }
 
@@ -42,9 +42,9 @@ public class StatsLogger {
     }
   }
 
-  private class StatsLoggerThread extends Thread {
+  private class LazyLoggerThread extends Thread {
 
-    public StatsLoggerThread() {
+    public LazyLoggerThread() {
       super();
       super.setPriority(Thread.MIN_PRIORITY);
     }
